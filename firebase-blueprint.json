@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "Digest": {
+      "title": "Weekly AI Search Digest",
+      "description": "Summary of AI products for nursing zone automation",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner of the digest" },
+        "summary": { "type": "string", "description": "Markdown summary of insights" },
+        "newProducts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "existingProducts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["sent", "pending", "failed"] }
+      },
+      "required": ["summary", "newProducts", "existingProducts", "createdAt"]
+    },
+    "UserSettings": {
+      "title": "User Settings",
+      "description": "Configuration for the digest system",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "active": { "type": "boolean" },
+        "searchQuery": { "type": "string", "description": "Custom search parameters for the scout" },
+        "lastRun": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email"]
+    }
+  },
+  "firestore": {
+    "digests": {
+      "schema": "Digest",
+      "description": "Historical search digests"
+    },
+    "settings": {
+      "schema": "UserSettings",
+      "description": "Global or per-user settings"
+    }
+  }
+}
