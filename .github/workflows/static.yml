@@ -37,4 +37,5 @@ jobs:
 
       - name: Deploy
         uses: actions/deploy-pages@v4
-env: GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+env:
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
